@@ -1,15 +1,21 @@
 #include<iostream>
 #include<vector>
+#include<algorithm>
 
 using namespace std;
 
-void dfs(const vector<vector<int>> &adj, vector<bool> &visited, int node, int &visit_count, vector<int> &enter, vector<int> &leave) {
-    if (!visited[node]) { 
-        visited[node] = true;
+void dfs(vector<vector<int>> &adj, int node, int &visit_count, vector<int> &enter, vector<int> &leave) {
+    if (enter[node] == -1) {   
         enter[node] = visit_count++;
-        for(int next_node: adj[node]) {
-            dfs(adj, visited, next_node, visit_count, enter, leave);
+        vector<int>& next = adj[node];
+        sort(next.begin(), next.end());
+        for(int next_node: next){
+            if(enter[next_node] == -1) {
+                dfs(adj, next_node, visit_count, enter, leave);
+            }
         }
+    }
+    if(leave[node] == -1) {
         leave[node] = visit_count++;
     }
 }
@@ -22,13 +28,13 @@ void testcase() {
         int a, b;
         cin >> a >> b;
         adj[a].push_back(b);
+        adj[b].push_back(a);
     }
     // do dfs
-    vector<bool> visited(n, false);
     vector<int> enter(n, -1);
     vector<int> leave(n, -1);
     int visit_count = 0;
-    dfs(adj, visited, v, visit_count, enter, leave);
+    dfs(adj, v, visit_count, enter, leave);
     for(int num: enter) cout << num << " ";
     cout << endl;
     for(int num: leave) cout << num << " ";
