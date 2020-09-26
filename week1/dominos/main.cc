@@ -12,13 +12,15 @@ void testcase() {
         cin >> h;
         heights.push_back(h); 
     }
-    int i = 0;
-    for(int j = 1; j < n; ++j) {
-        if(i + heights[i] > j && j + heights[j] > i + heights[i]) {
-            i = j;
+    int range = 1;
+    for(int i = 0; i < n; ++i) {
+        if(i == range) {
+            cout << range << endl;
+            return;
         }
+        range = max(range, heights[i] + i);
     }
-    cout << min(i + heights[i], n) << endl;
+    cout << n << endl;
 }
 
 int main() {
