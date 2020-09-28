@@ -11,3 +11,6 @@ Date,Week,Name,Topic,Note,Repetition
 25.09.2020,0,Sort,C++,,
 26.09.2020,1,Build Sum,Trivia,,
 26.09.2020,1,Dominoes,Two pointers,,!
+27.09.2020,1,Even Pairs,Partial Sums,Partial sums and n * (n - 1) / 2,
+28.09.2020,1,Even Matrices,Partial Sums,Reduce dim to apply Even Pairs,!
+29.09.2020,1,Deck of cards,Sliding window,,
